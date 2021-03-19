@@ -35,9 +35,14 @@ class Token:
         if not self.config.Proxy_type:
             logme.debug(f"No proxy type in config")
             return {}
-        return {
-            str(self.config.Proxy_type): f"http://{self.config.Proxy_host}:{self.config.Proxy_port}"
-        }
+        if self.config.Proxy_username and self.config.Proxy_password:
+            return {
+                str(self.config.Proxy_type): f"http://{self.config.Proxy_username}:{self.config.Proxy_password}@{self.config.Proxy_host}:{self.config.Proxy_port}"
+            }
+        else:
+            return {
+                str(self.config.Proxy_type): f"http://{self.config.Proxy_host}:{self.config.Proxy_port}"
+            }
 
     def _request(self):
         for attempt in range(self._retries + 1):
