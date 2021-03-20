@@ -26,22 +26,22 @@ class Token:
         self.url = 'https://twitter.com'
 
     def _get_proxies(self) -> dict:
-        if self.config.Proxy_host == "":
+        if self.config.Token_proxy_host == "":
             logme.debug(f"No proxy host in config")
             return {}
-        if self.config.Proxy_port == 0:
+        if self.config.Token_proxy_port == 0:
             logme.debug(f"No proxy port in config")
             return {}
-        if not self.config.Proxy_type:
+        if not self.config.Token_proxy_type:
             logme.debug(f"No proxy type in config")
             return {}
-        if self.config.Proxy_username and self.config.Proxy_password:
+        if self.config.Token_proxy_username and self.config.Token_proxy_password:
             return {
-                str(self.config.Proxy_type): f"http://{self.config.Proxy_username}:{self.config.Proxy_password}@{self.config.Proxy_host}:{self.config.Proxy_port}"
+                str(self.config.Token_proxy_type): f"http://{self.config.Token_proxy_username}:{self.config.Token_proxy_password}@{self.config.Token_proxy_host}:{self.config.Token_proxy_port}"
             }
         else:
             return {
-                str(self.config.Proxy_type): f"http://{self.config.Proxy_host}:{self.config.Proxy_port}"
+                str(self.config.Token_proxy_type): f"http://{self.config.Token_proxy_host}:{self.config.Token_proxy_port}"
             }
 
     def _request(self):

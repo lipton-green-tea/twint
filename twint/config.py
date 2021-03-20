@@ -61,8 +61,11 @@ class Config:
     Proxy_host: str = ""
     Proxy_port: int = 0
     Proxy_type: object = None
-    Proxy_username: object = None
-    Proxy_password: object = None
+    Token_proxy_host: str = ""
+    Token_proxy_port: int = 0
+    Token_proxy_type: object = None
+    Token_proxy_username: object = None
+    Token_proxy_password: object = None
     Tor_control_port: int = 9051
     Tor_control_password: str = None
     Retweets: bool = False
