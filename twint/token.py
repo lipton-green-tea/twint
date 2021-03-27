@@ -93,7 +93,8 @@ class Token:
         logme.debug('Retrieving guest token')
         res = self._request()
         match = re.search(r'\("gt=(\d+);', res.text)
-        print(res.text)
+        print("result.ok:", res.ok)
+        print("result text:",res.text)
         if match:
             logme.debug('Found guest token in HTML')
             self.config.Guest_token = str(match.group(1))
