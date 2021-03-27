@@ -50,6 +50,7 @@ class Token:
             req = self._session.prepare_request(requests.Request('GET', self.url))
             logme.debug(f'Retrieving {req.url}')
             print("proxies:", self.proxies)
+            self._session.proxies.update(self.proxies)
             try:
                 if self.proxies:
                     r = self._session.send(
@@ -92,6 +93,7 @@ class Token:
         logme.debug('Retrieving guest token')
         res = self._request()
         match = re.search(r'\("gt=(\d+);', res.text)
+        print(res.text)
         if match:
             logme.debug('Found guest token in HTML')
             self.config.Guest_token = str(match.group(1))
