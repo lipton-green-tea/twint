@@ -53,6 +53,9 @@ class Token:
             self._session.proxies.update(self.proxies)
             try:
                 if self.proxies:
+                    self._session.headers.update({
+                        "X-Forwarded-For": self.config.Token_proxy_host
+                    })
                     r = self._session.send(
                         req,
                         allow_redirects=True,
