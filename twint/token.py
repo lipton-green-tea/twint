@@ -49,6 +49,7 @@ class Token:
             # The request is newly prepared on each retry because of potential cookie updates.
             req = self._session.prepare_request(requests.Request('GET', self.url))
             logme.debug(f'Retrieving {req.url}')
+            print("proxies:", self.proxies)
             try:
                 if self.proxies:
                     r = self._session.send(
@@ -67,6 +68,7 @@ class Token:
                 else:
                     retrying = ''
                     level = logme.ERROR
+                print(f'Error retrieving {req.url}: {exc!r}{retrying}')
                 logme.log(level, f'Error retrieving {req.url}: {exc!r}{retrying}')
             else:
                 success, msg = (True, None)
